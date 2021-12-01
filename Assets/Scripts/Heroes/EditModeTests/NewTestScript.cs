@@ -1,103 +1,72 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using Heroes;
 using NUnit.Framework;
-using TDDProject.Assets.Scripts.Heroes;
 using UnityEngine;
-using UnityEngine.TestTools;
+using System;
+using  UnityEngine.TestTools;
 
-public class NewTestScript
+namespace Test
 {
-    [SetUp]
-    public void SetUp()
+    public class NewTestScript
     {
-        Debug.Log("SetUp");
-    }
-
-    [TearDown]
-    public void TearDown()
-    {
-        Debug.Log("TearDown");
-    }
-
-    // A Test behaves as an ordinary method
-    [Test]
-    public void NewTestScriptSimplePasses()
-    {
-        // Use the Assert class to test conditions
-        Debug.Log("1");
-    }
-
-    // A Test behaves as an ordinary method
-    [Test]
-    public void NewTestScriptSimplePasses2()
-    {
-        // Use the Assert class to test conditions
-        Debug.Log("2");
-    }
-    [Test]
-    public void Sume_dos_numeros_Cuando_el_numero_correcto()
-    {
-        // nombre del metodo 
-        //MethodName_WhenTheseCondition_DoesWhat
-
-        //Arrenge 
-        var a = 10;
-        var b = 20;
-        //Act
-        var resultado = a + b;
-        //assert
-        Assert.AreEqual(30,resultado);
-
-    }
-    //un solo caso 
-    [Test]
-    public void Sum_The_ParametersArePositives_ReturnsTheCorrectResult(){
-        //arrage
-        var calculator= new Calculator();
-        //act 
-        var result =calculator.Sum(10,20);
-       //assert
-        Assert.AreEqual(30,result,"mesaje");
-    }
-    //varios casos
-    [TestCase(10,20,30)]
-    [TestCase(30,20,50)]
-    [TestCase(0,0,0)]
-    
-    public void Sum_The_ParametersArePositives_ReturnsTheCorrectResult_varios(int value1,int value2,int expected){
-        //arrage
-        var calculator= new Calculator();
-        //act 
-        var result =calculator.Sum( value1, value2);
-       //assert
-        Assert.AreEqual(expected,result,"mesaje");
-    }
-    //una forma 
-    [Test]
-    public void Sum_AnyParameterIsNegative_ThowsException(){
-       //arrage
-        var calculator= new Calculator();
-
-        Assert.Throws<Exception>(
-            ()=>
+        [SetUp]
+        public void Setup()
         {
-            //
-            var result=calculator.Sum(-10,20);
-        });
-    }
-    //segunda forma  
-    [TestCase(10,-20)]
-    [TestCase(-10,20)]
-    public void Sum_AnyParameterIsNegative_ThowsException1(int value1,int value2){
-       //arrage
-        var calculator= new Calculator();
+            Debug.Log("SetUP");
+        }
 
-        Assert.Throws<Exception>(
-            ()=>
+        [TearDown]
+        public void TearDown()
         {
-            //
-            var result=calculator.Sum(value1,value2);
-        });
+            Debug.Log("TearDown");
+        }
+
+        [Test]
+        public void Sum_TheParametersArePositives_ReturnsTheCorrectResult()
+        {
+            //Arrange
+            var calculator = new Calculator();
+            //Act
+            var result = calculator.Sum(10, 20);
+            // Assert 
+            Assert.AreEqual(30, result);
+
+        }
+        
+        [TestCase(10,20,30)]
+        [TestCase(30,20,50)]
+        [TestCase(0,0,0)]
+        public void Sum_TheParametersArePositives_ReturnsTheCorrectResult1(int value1,int value2,int expected)
+        {
+            //Arrange
+            var calculator = new Calculator();
+            //Act
+            var result = calculator.Sum(value1,value2);
+            // Assert 
+            Assert.AreEqual(expected, result);
+
+        }
+        [TestCase(-10,20)]
+        [TestCase(10,-20)]
+        public void Sum_AnyParameterIsNegative_ThowsException(int value1, int value2)
+        {
+            //Arrange
+            var calculator = new Calculator();
+            
+            // Assert 
+            Assert
+                .Throws<Exception>(() =>
+                {
+                    //Act
+                    var result = calculator.Sum(value1,value2);
+                });
+        }
+
+        [Test]
+        public void NewTestScriptSimplePasses2()
+        {
+
+            Debug.Log("2");
+        }
+       
     }
 }
