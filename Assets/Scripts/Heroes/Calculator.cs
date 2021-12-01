@@ -6,9 +6,9 @@ namespace Heroes
     {
         private readonly ILog log;
 
-        public Calculator(UnityLogAdapter log)
+        public Calculator(ILog log)
         {
-            this.log =log;
+            this.log = log;
         }
         public int Sum (int value1,int value2){ 
             
@@ -18,7 +18,7 @@ namespace Heroes
             }
 
             var result = value1 + value2;
-            log.Log($"{value1} + {value2} = {result}");
+            log.Log($"value1: {value1} + value2: {value2};  result: {result}");
             return result;
         }
     }
